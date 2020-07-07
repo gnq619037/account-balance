@@ -32,6 +32,8 @@ public interface AccountMapper {
     @Update("update t_account set account_status = #{accountStatus, jdbcType=INTEGER} where id = #{id, jdbcType=BIGINT}")
     public int updateAccount(Account account);
 
+    public int updateAccounts(List<Long> ids);
+
     /**
      * 获取所有的账户
      * @return

@@ -1,16 +1,11 @@
-package com.account.balance.bean;
+package com.account.balance.dto;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class Account implements Serializable {
-    private static final long serialVersionUID = 7296364155474903170L;
-
-    /**
-     * 主键,
-     */
+public class AccountDto implements Serializable {
+    private static final long serialVersionUID = -659679116000533574L;
     private long id;
-
     /**
      * 账户号
      */
@@ -25,6 +20,8 @@ public class Account implements Serializable {
      * 对应额度id
      */
     private BigDecimal balance;
+
+    private long limitId;
 
     public long getId() {
         return id;
@@ -56,5 +53,13 @@ public class Account implements Serializable {
 
     public void setBalance(BigDecimal balance) {
         this.balance = balance;
+    }
+
+    public long getLimitId() {
+        return limitId;
+    }
+
+    public void setLimitId(long limitId) {
+        this.limitId = limitId;
     }
 }
