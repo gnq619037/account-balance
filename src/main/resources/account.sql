@@ -24,27 +24,39 @@ CREATE TABLE `t_account` (
   `id` bigint(10) NOT NULL AUTO_INCREMENT,
   `account_code` varchar(10) NOT NULL COMMENT '账户号',
   `account_status` int(1) DEFAULT NULL COMMENT '账户状态',
+  `balance` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 /*Data for the table `t_account` */
 
-insert  into `t_account`(`id`,`account_code`,`account_status`) values
-(1,'A',2);
+insert  into `t_account`(`id`,`account_code`,`account_status`,`balance`) values
+(1,'A',2,NULL);
 
-/*Table structure for table `t_balance` */
+/*Table structure for table `t_balance_limit` */
 
-DROP TABLE IF EXISTS `t_balance`;
+DROP TABLE IF EXISTS `t_balance_limit`;
 
-CREATE TABLE `t_balance` (
+CREATE TABLE `t_balance_limit` (
   `id` bigint(10) NOT NULL AUTO_INCREMENT,
-  `balanceLimit` decimal(10,2) DEFAULT NULL COMMENT '余额',
   `limit_rate` decimal(10,2) DEFAULT NULL COMMENT '余额限制',
-  `account_id` bigint(10) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/*Data for the table `t_balance` */
+/*Data for the table `t_balance_limit` */
+
+/*Table structure for table `t_limit_account` */
+
+DROP TABLE IF EXISTS `t_limit_account`;
+
+CREATE TABLE `t_limit_account` (
+  `id` bigint(10) NOT NULL AUTO_INCREMENT,
+  `account_id` bigint(10) DEFAULT NULL,
+  `limit_id` bigint(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `t_limit_account` */
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
