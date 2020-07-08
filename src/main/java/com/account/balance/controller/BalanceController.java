@@ -21,12 +21,17 @@ public class BalanceController {
         return balanceService.addBalanceLimit(balanceLimit);
     }
 
-    @PostMapping("/update")
-    public AccountResponse<String> modifyBalanceLimit(@RequestBody BalanceLimit balanceLimit){
-        return balanceService.modifyBalanceLimit(balanceLimit);
+    @PostMapping("/delete")
+    public AccountResponse<String> deleteBalanceLimit(@RequestBody BalanceLimit balanceLimit){
+        return balanceService.removeBalanceLimit(balanceLimit.getId());
     }
 
-    @PostMapping("/relation")
+    @PostMapping("/update")
+    public AccountResponse<String> modifyBalanceLimit(@RequestBody BalanceLimitDto balanceLimitDto){
+        return balanceService.modifyBalanceLimit(balanceLimitDto);
+    }
+
+    @PostMapping("/publish")
     public AccountResponse<String> relationAccount(@RequestBody BalanceLimitDto balanceLimit){
         return balanceService.relationAccount(balanceLimit);
     }

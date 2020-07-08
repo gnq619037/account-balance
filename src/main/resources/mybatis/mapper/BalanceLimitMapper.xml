@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.account.balance.dao.BalanceLimitMapper" >
+    <!--<cache></cache>-->
+    <resultMap id="BalanceLimitDtoMap" type="com.account.balance.dto.BalanceLimitDto" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="quota" property="quota" jdbcType="DECIMAL" />
+        <result column="limit_rate" property="limitRate" jdbcType="INTEGER" />
+        <collection property="accountList" ofType="com.account.balance.bean.Account">
+            <result column="account_id" property="id" jdbcType="BIGINT"/>
+            <result column="account_status" property="accountStatus" jdbcType="INTEGER" />
+        </collection>
+    </resultMap>
+
+    <sql id="BaseCloumn">
+        id, quota, limit_rate
+    </sql>
+
+    <select id="getBalanceAccountsById" parameterType="java.lang.Long" resultMap="BalanceLimitDtoMap">
+        SELECT bl.id, bl.limit_rate, bl.quota, a.id as account_id, a.account_status  FROM t_balance_limit bl
+        LEFT JOIN t_limit_account la ON bl.`id` = la.limit_id LEFT JOIN t_account a ON la.account_id = a.id
+        WHERE bl.id = #{id, jdbcType=BIGINT}
+    </select>
+</mapper>

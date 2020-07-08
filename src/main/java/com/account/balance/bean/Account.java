@@ -22,7 +22,7 @@ public class Account implements Serializable {
     private int accountStatus;
 
     /**
-     * 对应额度id
+     * 余额
      */
     private BigDecimal balance;
 

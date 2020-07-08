@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.account.balance.dao.LimitAccountMapper" >
+    <!--<cache></cache>-->
+    <resultMap id="LimitAccountMap" type="com.account.balance.bean.LimitAccount" >
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="account_id" property="accountId" jdbcType="BIGINT" />
+        <result column="limit_id" property="limitId" jdbcType="BIGINT" />
+    </resultMap>
+
+    <sql id="BaseCloumn">
+        id, account_id, limit_id
+    </sql>
+
+    <insert id="insertLimitAccount" parameterType="java.util.List">
+        INSERT INTO t_limit_account
+        (account_id, limit_id)
+        VALUES
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.accountId, jdbcType=BIGINT},
+            #{item.limitId, jdbcType=BIGINT}
+            )
+        </foreach>
+    </insert>
+
+    <update id="updateLimitAccounts" parameterType="java.util.List">
+        <foreach collection="list" item="item" separator=";">
+            UPDATE t_limit_account
+            <set>
+                <if test="item.accountId != null and item.accountId != 0 ">
+                    account_id = #{item.accountId, jdbcType=BIGINT},
+                </if>
+                <if test="item.limitId != null and item.limitId != 0 ">
+                    limit_id = #{item.limitId, jdbcType=BIGINT},
+                </if>
+            </set>
+            WHERE id = #{item.id, jdbcType=BIGINT}
+        </foreach>
+    </update>
+</mapper>

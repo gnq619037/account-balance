@@ -14,9 +14,14 @@ public class BalanceLimitDto implements Serializable {
     private long id;
 
     /**
+     * 额度
+     */
+    private BigDecimal quota;
+
+    /**
      * 限制
      */
-    private BigDecimal limitRate;
+    private int limitRate;
 
     private List<Account> accountList;
 
@@ -28,11 +33,19 @@ public class BalanceLimitDto implements Serializable {
         this.id = id;
     }
 
-    public BigDecimal getLimitRate() {
+    public BigDecimal getQuota() {
+        return quota;
+    }
+
+    public void setQuota(BigDecimal quota) {
+        this.quota = quota;
+    }
+
+    public int getLimitRate() {
         return limitRate;
     }
 
-    public void setLimitRate(BigDecimal limitRate) {
+    public void setLimitRate(int limitRate) {
         this.limitRate = limitRate;
     }
 

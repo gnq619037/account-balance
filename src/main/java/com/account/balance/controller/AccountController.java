@@ -2,6 +2,7 @@ package com.account.balance.controller;
 
 import com.account.balance.bean.Account;
 import com.account.balance.common.AccountResponse;
+import com.account.balance.dto.SceneDto;
 import com.account.balance.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,5 +33,19 @@ public class AccountController {
     @GetMapping("/list")
     public AccountResponse<List<Account>> listAllAccount() {
         return accountService.listAllAccount();
+    }
+
+    /**
+     * 触发消费场景，随机挑选账户，进行消费场景模拟
+     * @return
+     */
+    @PostMapping("/consumer/touch")
+    public AccountResponse<String> touchConsumer(@RequestBody SceneDto sceneDto){
+        return accountService.consumerBalance(sceneDto);
+    }
+
+    @GetMapping("/consumer/message")
+    public AccountResponse<List<String>> consumerMessage(){
+        return accountService.getConsumerMessage();
     }
 }
