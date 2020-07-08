@@ -1,6 +1,6 @@
 /*
 SQLyog Trial v12.3.3 (64 bit)
-MySQL - 5.7.24 : Database - account_balance_management
+MySQL - 5.6.26-log : Database - account_balance_management
 *********************************************************************
 */
 
@@ -12,49 +12,39 @@ MySQL - 5.7.24 : Database - account_balance_management
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`account_balance_management` /*!40100 DEFAULT CHARACTER SET utf8 */;
-
-USE `account_balance_management`;
-
 /*Table structure for table `t_account` */
-
-DROP TABLE IF EXISTS `t_account`;
 
 CREATE TABLE `t_account` (
   `id` bigint(10) NOT NULL AUTO_INCREMENT,
   `account_code` varchar(10) NOT NULL COMMENT '账户号',
   `account_status` int(1) DEFAULT NULL COMMENT '账户状态',
   `balance` decimal(10,2) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `account_code` (`account_code`)
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 
 /*Data for the table `t_account` */
 
-insert  into `t_account`(`id`,`account_code`,`account_status`,`balance`) values
-(1,'A',2,NULL);
-
 /*Table structure for table `t_balance_limit` */
-
-DROP TABLE IF EXISTS `t_balance_limit`;
 
 CREATE TABLE `t_balance_limit` (
   `id` bigint(10) NOT NULL AUTO_INCREMENT,
-  `limit_rate` decimal(10,2) DEFAULT NULL COMMENT '余额限制',
+  `limit_rate` int(3) DEFAULT NULL COMMENT '余额限制',
+  `quota` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 /*Data for the table `t_balance_limit` */
 
 /*Table structure for table `t_limit_account` */
 
-DROP TABLE IF EXISTS `t_limit_account`;
-
 CREATE TABLE `t_limit_account` (
   `id` bigint(10) NOT NULL AUTO_INCREMENT,
   `account_id` bigint(10) DEFAULT NULL,
   `limit_id` bigint(10) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`),
+  KEY `account_id` (`account_id`,`limit_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 
 /*Data for the table `t_limit_account` */
 

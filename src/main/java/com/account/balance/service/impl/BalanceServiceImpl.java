@@ -55,7 +55,6 @@ public class BalanceServiceImpl implements BalanceService {
 
     @Override
     public AccountResponse<String> modifyBalanceLimit(BalanceLimitDto balanceLimitDto) {
-        BalanceLimitDto balanceLimitDtoData = balanceLimitMapper.getBalanceAccountsById(balanceLimitDto.getId());
         List<Account> accountsData = accountMapper.queryAllAccount();
         List<LimitAccount> insertAccounts = new ArrayList<>();
         List<Account> updateAccounts = new ArrayList<>();

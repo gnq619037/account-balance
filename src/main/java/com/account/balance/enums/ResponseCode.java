@@ -7,9 +7,7 @@ package com.account.balance.enums;
  */
 public enum ResponseCode {
     SUCCESS(0, "成功"),
-    FAIL(1,"失败"),
-    NOT_LOGIN(2, "未登录"),
-    NO_PERMISSION(3, "无对应权限");
+    FAIL(1,"失败");
 
     private int code;
     private String desc;

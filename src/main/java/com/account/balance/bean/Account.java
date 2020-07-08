@@ -17,7 +17,7 @@ public class Account implements Serializable {
     private String accountCode;
 
     /**
-     * 账户状态 1-正常， 2-维护中，3-不限定额度
+     * 账户状态 1-维护中， 2-未维护
      */
     private int accountStatus;
 

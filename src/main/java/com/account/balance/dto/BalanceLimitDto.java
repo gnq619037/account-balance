@@ -23,6 +23,9 @@ public class BalanceLimitDto implements Serializable {
      */
     private int limitRate;
 
+    /**
+     * 账户列表
+     */
     private List<Account> accountList;
 
     public long getId() {

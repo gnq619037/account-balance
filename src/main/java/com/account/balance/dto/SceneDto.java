@@ -12,10 +12,19 @@ import java.math.BigDecimal;
 public class SceneDto implements Serializable {
     private static final long serialVersionUID = 6465373348275236311L;
 
+    /**
+     * 模拟消费金额
+     */
     private BigDecimal money;
 
+    /**
+     * 模拟消费次数
+     */
     private int touchNum;
 
+    /**
+     * 模拟账户数
+     */
     private int accountNum;
 
     public BigDecimal getMoney() {
